@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Analysis Results for {{ filename }}</h1>
+    
+    <h2>Entities Identified</h2>
+    <ul>
+        {% for entity, label in entities %}
+            <li>{{ entity }} ({{ label }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Document Category</h2>
+    <p>{{ category }}</p>
+
+    <h2>Important Clauses</h2>
+    <ul>
+        {% for clause in clauses %}
+            <li>{{ clause }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Potential Risks</h2>
+    <ul>
+        {% if risks %}
+            {% for risk in risks %}
+                <li>{{ risk }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No significant risks detected.</li>
+        {% endif %}
+    </ul>
+
+    <a href="{{ url_for('index') }}">Analyze another document</a>
+</body>
+</html>
